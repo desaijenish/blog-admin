@@ -21,8 +21,9 @@ function Layout({ collapsed }: LayoutProps) {
   const isSmallScreen = useMediaQuery("(max-width: 1200px)");
 
   const publicRoutes = ["/login", "/register"];
-  const isPublicRoute = publicRoutes.includes(location.pathname);
-
+  const isPublicRoute = publicRoutes.some((route) =>
+    location.pathname.startsWith(route)
+  );
   return (
     <div
       style={{

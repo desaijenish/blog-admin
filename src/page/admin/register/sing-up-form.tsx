@@ -92,8 +92,6 @@ export function SignUpForm(): React.JSX.Element {
           return;
         }
 
-        // Store the temporary token and show OTP form
-        cookies.set("token", result.data.token, { path: "/" });
         setEmail(values.email);
         setShowOtpForm(true);
       } catch (error) {

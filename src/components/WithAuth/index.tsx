@@ -11,7 +11,6 @@ const publicRoutes = ["/login", "/register", "/verify-email"];
 interface WithAuthProps {
   children: ReactNode;
 }
-
 const WithAuth: React.FC<WithAuthProps> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,7 +19,6 @@ const WithAuth: React.FC<WithAuthProps> = ({ children }) => {
 
   const reduxToken = useSelector(getToken);
   const [loading, setLoading] = useState(true);
-  const lastCookieToken = useRef<string | undefined>(cookies.get("token"));
 
   const isPublicRoute = publicRoutes.some((route) =>
     matchPath({ path: route, end: true }, location.pathname)
@@ -34,58 +32,36 @@ const WithAuth: React.FC<WithAuthProps> = ({ children }) => {
       dispatch(setToken(cookieToken));
     }
 
-    if (!token && !isPublicRoute) {
-      if (location.pathname !== "/login") {
-        navigate("/login", { replace: true });
-      }
+    // No need to redirect if it's a public route
+    if (isPublicRoute) {
       setLoading(false);
       return;
     }
 
-    if (token) {
-      let isValid = true;
-      try {
-        const { exp } = parseJwt(token);
-        const now = Date.now().valueOf() / 1000;
-        if (exp < now) isValid = false;
-      } catch {
-        isValid = false;
-      }
+    // For protected routes, check token
+    if (!token) {
+      navigate("/login", { replace: true });
+      setLoading(false);
+      return;
+    }
 
-      if (!isValid) {
+    // Validate token expiration
+    try {
+      const { exp } = parseJwt(token);
+      const now = Date.now().valueOf() / 1000;
+      if (exp < now) {
         cookies.remove("token");
         dispatch(setToken(""));
-        if (location.pathname !== "/login") {
-          navigate("/login", { replace: true });
-        }
-        setLoading(false);
-        return;
+        navigate("/login", { replace: true });
       }
-
-      if (isPublicRoute) {
-        if (location.pathname !== "/blog") {
-          navigate("/blog", { replace: true });
-        }
-        setLoading(false);
-        return;
-      }
+    } catch {
+      cookies.remove("token");
+      dispatch(setToken(""));
+      navigate("/login", { replace: true });
     }
 
     setLoading(false);
   }, [reduxToken, location.pathname]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const current = cookies.get("token");
-      if (lastCookieToken.current && !current) {
-        dispatch(setToken(""));
-        if (!isPublicRoute) navigate("/login", { replace: true });
-      }
-      lastCookieToken.current = current;
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [dispatch, navigate, isPublicRoute]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -93,5 +69,4 @@ const WithAuth: React.FC<WithAuthProps> = ({ children }) => {
 
   return <>{children}</>;
 };
-
 export default WithAuth;
