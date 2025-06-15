@@ -1,6 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import Stack from "@mui/material/Stack";
@@ -8,7 +8,7 @@ import { navItems } from "./config";
 import { NavItemConfig } from "../../types/nav";
 import { useLocation } from "react-router-dom";
 import { NavItem } from "./NavItem";
-import Logo from "../../assets/Logo.png";
+// import Logo from "../../assets/Logo.png";
 
 export interface MobileNavProps {
   onClose?: () => void;
@@ -31,6 +31,8 @@ export function renderNavItems({
   return (
     <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
       {items.map((item: any, index) => {
+        console.log(index);
+
         const { key, ...restProps } = item; // Extract the key and rest of the props
         return (
           <div key={key}>

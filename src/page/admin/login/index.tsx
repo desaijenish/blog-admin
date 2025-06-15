@@ -28,9 +28,9 @@ interface FormValues {
 }
 
 // Interface for the API response
-interface LoginResponse {
-  token: string;
-}
+// interface LoginResponse {
+//   token: string;
+// }
 
 // Interface for the error response
 interface ErrorResponse {

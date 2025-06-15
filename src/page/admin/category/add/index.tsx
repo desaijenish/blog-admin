@@ -24,7 +24,7 @@ import Tab from "@mui/material/Tab";
 import WestIcon from "@mui/icons-material/West";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   useCreateCategoryMutation,
   useGetCategoryByIdQuery,
@@ -85,7 +85,7 @@ interface CategoryFormValues {
 
 const CategoryAddEditForm: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
   const [createCategory] = useCreateCategoryMutation();
   const [updateCategory] = useUpdateCategoryMutation();
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -107,10 +107,12 @@ const CategoryAddEditForm: React.FC = () => {
   });
 
   // Fetch document data for cover image
-  const { data: documentData, refetch: refetchDocumentData } =
-    useGetUploadDocumentQuery(categoryData?.cover_image_id || 0, {
+  const { data: documentData } = useGetUploadDocumentQuery(
+    categoryData?.cover_image_id || 0,
+    {
       skip: !categoryData?.cover_image_id,
-    });
+    }
+  );
 
   useEffect(() => {
     if (isSuccess && categoryData) {
@@ -183,7 +185,8 @@ const CategoryAddEditForm: React.FC = () => {
     fileInputRef.current?.click();
   };
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (_: any, newValue: string) => {
+    console.log(_);
     setValue(newValue);
   };
 

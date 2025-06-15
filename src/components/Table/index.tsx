@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import {
   Table,
   TableBody,
@@ -6,14 +6,14 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Checkbox,
-  Avatar,
+  // Checkbox,
+  // Avatar,
   IconButton,
   Paper,
-  Typography,
+  // Typography,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { green, red } from "@mui/material/colors";
+// import { green, red } from "@mui/material/colors";
 
 interface TableProp {
   column: any[];

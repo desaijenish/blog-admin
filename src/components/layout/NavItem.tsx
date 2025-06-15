@@ -21,8 +21,6 @@ interface NavItemProps extends Omit<NavItemConfig, "items"> {
 }
 
 export function NavItem({
-  disabled,
-  external,
   href,
   icon,
   pathname,
@@ -146,6 +144,8 @@ export function NavItem({
           }}
         >
           {items.map((subItem: NavItemConfig, index: number) => {
+            console.log(index);
+
             const { key, ...restProps } = subItem; // Extract the key and rest of the props
             return (
               <div key={key} style={{ width: "100%" }}>

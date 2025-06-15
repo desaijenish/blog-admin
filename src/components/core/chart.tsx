@@ -1,12 +1,7 @@
-import React, { Suspense } from 'react';
-import { styled } from '@mui/material/styles';
+// import React from "react";
 
-// Dynamically import the ApexChart component
-const ApexChart = React.lazy(() => import('react-apexcharts'));
+const chart = () => {
+  return <div>chart</div>;
+};
 
-// Styled component using MUI's styled API
-export const Chart = styled((props) => (
-  <Suspense fallback={<div>Loading...</div>}>
-    <ApexChart {...props} />
-  </Suspense>
-))``;
+export default chart;

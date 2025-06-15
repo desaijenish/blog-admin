@@ -161,7 +161,7 @@
 //   const handleTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
 //     const newType = event.target.value as DateFilterType;
 //     setType(newType);
-    
+
 //     // Reset dates when switching to non-custom types
 //     if (newType !== "range" && newType !== "single" && newType !== "custom") {
 //       setStartDate(undefined);
@@ -171,7 +171,7 @@
 
 //   const applyQuickOption = (optionType: DateFilterType) => {
 //     setType(optionType);
-    
+
 //     switch (optionType) {
 //       case "today-after":
 //         setStartDate(new Date());
@@ -202,7 +202,7 @@
 //     if (type === "today-before") return "Today or before";
 //     if (type === "yesterday") return "Yesterday";
 //     if (type === "last-week") return "Last week";
-    
+
 //     if (startDate && endDate && startDate !== endDate) {
 //       return `${dayjs(startDate).format("MMM D, YYYY")} - ${dayjs(endDate).format("MMM D, YYYY")}`;
 //     } else if (startDate) {
@@ -342,14 +342,10 @@
 
 // export default CustomDatePicker;
 
-
-
-import React from 'react'
+// import React from 'react'
 
 const DateTimePickerFilter = () => {
-  return (
-    <div>DateTimePickerFilter</div>
-  )
-}
+  return <div>DateTimePickerFilter</div>;
+};
 
-export default DateTimePickerFilter
+export default DateTimePickerFilter;

@@ -1,7 +1,7 @@
 import { ReactNode, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Cookies from "universal-cookie";
-import { getToken, setToken } from "../../redux/authSlice";
+import { setToken } from "../../redux/authSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 
 type ProtectedPageProps = {
@@ -13,7 +13,7 @@ const WithAuth = ({ children }: ProtectedPageProps) => {
   const cookies = new Cookies();
   const location = useLocation();
   const dispatch = useDispatch();
-  const getTokens = useSelector(getToken);
+  // const getTokens = useSelector(getToken);
 
   const token = cookies.get("token");
 

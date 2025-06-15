@@ -36,7 +36,7 @@ const DropDown: React.FC<DropDownProps> = ({
   onBlur,
   error,
   helperText,
-  required
+  // required
 }) => {
   return (
     <Box sx={{ width: "100%" }}>

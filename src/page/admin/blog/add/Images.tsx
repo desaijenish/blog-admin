@@ -72,10 +72,10 @@ const ImageDetails = styled("div")({
   flexGrow: 1,
 });
 
-const UploadButton = styled(Button)({
-  marginTop: 10,
-  width: "fit-content",
-});
+// const UploadButton = styled(Button)({
+//   marginTop: 10,
+//   width: "fit-content",
+// });
 
 const KeywordChip = styled(Chip)({
   margin: "2px",

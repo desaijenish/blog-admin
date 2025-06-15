@@ -10,7 +10,7 @@ const cookies = new Cookies();
 const token = cookies.get("token");
 const decodedToken: DecodedToken = token ? parseJwt(token) : null;
 
-const isSuperAdmin: boolean = decodedToken?.type === "company" || false;
+// const isSuperAdmin: boolean = decodedToken?.type === "company" || false;
 
 const hasModuleAccess = (module: string): boolean => {
   return !!decodedToken?.roles?.some((role) =>

@@ -9,9 +9,9 @@ import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 import { Bell as BellIcon } from "@phosphor-icons/react/dist/ssr/Bell";
 import { List as ListIcon } from "@phosphor-icons/react/dist/ssr/List";
-import { MagnifyingGlass as MagnifyingGlassIcon } from "@phosphor-icons/react/dist/ssr/MagnifyingGlass";
+// import { MagnifyingGlass as MagnifyingGlassIcon } from "@phosphor-icons/react/dist/ssr/MagnifyingGlass";
 import { Users as UsersIcon } from "@phosphor-icons/react/dist/ssr/Users";
-import avatar from "@/assets/avatar.png";
+// import avatar from "@/assets/avatar.png";
 import { MobileNav } from "./mobile-nav";
 import { UserPopover } from "./user-popover";
 

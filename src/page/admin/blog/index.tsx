@@ -9,7 +9,7 @@ import {
   TableHead,
   TableRow,
   TablePagination,
-  Paper,
+  // Paper,
   IconButton,
   TextField,
   Box,
@@ -18,10 +18,10 @@ import {
   Tooltip,
   Chip,
   Autocomplete,
-  Switch,
-  FormControlLabel,
-  Avatar,
-  Badge,
+  // Switch,
+  // FormControlLabel,
+  // Avatar,
+  // Badge,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import {
@@ -30,7 +30,7 @@ import {
   Search as SearchIcon,
   Clear as ClearIcon,
   Add as AddIcon,
-  FilterList as FilterIcon,
+  // FilterList ,
   Visibility,
   VisibilityOff,
   Star,
@@ -40,10 +40,10 @@ import {
   useGetAllBlogQuery,
   useRemoveBlogMutation,
 } from "../../../redux/api/blog";
-import { decodeDate } from "../../../utils/decodeDate";
+// import { decodeDate } from "../../../utils/decodeDate";
 import { useGetMultiCategoryQuery } from "../../../redux/api/category";
 
-const RootContainer = styled(Box)(({ theme }) => ({
+const RootContainer = styled(Box)(() => ({
   padding: "24px",
   backgroundColor: "#f9fafc",
   minHeight: "100vh",
@@ -88,12 +88,12 @@ const ActionCell = styled(TableCell)({
   minWidth: "150px",
 });
 
-const StatusChip = styled(Chip)(({ theme }) => ({
+const StatusChip = styled(Chip)(() => ({
   fontWeight: 500,
   fontSize: "0.75rem",
 }));
 
-const InactiveChip = styled(Chip)(({ theme }) => ({
+const InactiveChip = styled(Chip)(() => ({
   fontWeight: 500,
   fontSize: "0.75rem",
   // backgroundColor: theme.palette.error.light,
@@ -122,6 +122,8 @@ const Blog: React.FC = () => {
   });
 
   const handleCategoryChange = (event: any, newValue: any) => {
+    console.log(event);
+
     setCategoryId(newValue?.id || null);
     setPage(0);
   };
@@ -144,6 +146,7 @@ const Blog: React.FC = () => {
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
+    console.log(event);
     setPage(newPage);
   };
 
@@ -178,16 +181,16 @@ const Blog: React.FC = () => {
     }
   };
 
-  const handleStatusFilterChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setStatusFilter(event.target.checked);
-    setPage(0);
-  };
+  // const handleStatusFilterChange = (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   setStatusFilter(event.target.checked);
+  //   setPage(0);
+  // };
 
-  const handleClearStatusFilter = () => {
-    setStatusFilter(null);
-  };
+  // const handleClearStatusFilter = () => {
+  //   setStatusFilter(null);
+  // };
 
   return (
     <RootContainer>

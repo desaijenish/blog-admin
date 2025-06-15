@@ -5,7 +5,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button, Typography } from "@mui/material";
 import Header from "./Header";
-import { error } from "console";
 import "./index.css";
 
 const RootContainer = styled.div(() => ({}));
@@ -34,7 +33,7 @@ interface CalendarProps {
   selected?: Date;
   format?: string;
   label?: string;
-  error?: string | null| boolean;
+  error?: string | null | boolean;
   minDate?: Date;
 }
 
@@ -94,7 +93,7 @@ const Calendar: FC<CalendarProps> = ({
     }
   };
 
-  const onChange = (date: Date | null ) => {
+  const onChange = (date: Date | null) => {
     if (date) setStartDate(date);
   };
 
@@ -122,8 +121,8 @@ const Calendar: FC<CalendarProps> = ({
           nextYearButtonDisabled,
           monthDate,
           customHeaderCount,
-          changeMonth,
-          changeYear,
+          // changeMonth,
+          // changeYear,
         }) => (
           <Header
             date={date}

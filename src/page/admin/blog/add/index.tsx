@@ -10,7 +10,7 @@ import {
   FormControlLabel,
   Checkbox,
   Avatar,
-  IconButton,
+  // IconButton,
   CircularProgress,
   Card,
   CardMedia,
@@ -24,7 +24,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Tab from "@mui/material/Tab";
 import WestIcon from "@mui/icons-material/West";
-import DeleteIcon from "@mui/icons-material/Delete";
+// import DeleteIcon from "@mui/icons-material/Delete";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -34,7 +34,7 @@ import {
 } from "../../../../redux/api/blog";
 import { useGetMultiCategoryQuery } from "../../../../redux/api/category";
 import {
-  useDeleteDocumentMutation,
+  // useDeleteDocumentMutation,
   useGetUploadDocumentQuery,
   useUploadDocumentPngMutation,
 } from "../../../../redux/api/document";
@@ -119,7 +119,7 @@ const BlogAddEditForm: React.FC = () => {
   const [snackbarMessage, setSnackbarMessage] = useState<string>("");
   const [uploadImage, { isLoading: isUploading }] =
     useUploadDocumentPngMutation();
-  const [deleteImage] = useDeleteDocumentMutation();
+  // const [deleteImage] = useDeleteDocumentMutation();
   const [localImageUrl, setLocalImageUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -133,10 +133,12 @@ const BlogAddEditForm: React.FC = () => {
   });
 
   // Fetch document data for cover image
-  const { data: documentData, refetch: refetchDocumentData } =
-    useGetUploadDocumentQuery(blogData?.cover_image_id || 0, {
+  const { data: documentData } = useGetUploadDocumentQuery(
+    blogData?.cover_image_id || 0,
+    {
       skip: !blogData?.cover_image_id,
-    });
+    }
+  );
 
   // Fetch categories for dropdown
   const { data: categoriesData } = useGetMultiCategoryQuery({});
@@ -203,29 +205,29 @@ const BlogAddEditForm: React.FC = () => {
     }
   };
 
-  const handleDeleteImage = async () => {
-    if (!formik.values.cover_image_id) return;
+  // const handleDeleteImage = async () => {
+  //   if (!formik.values.cover_image_id) return;
 
-    try {
-      await deleteImage(formik.values.cover_image_id).unwrap();
+  //   try {
+  //     await deleteImage(formik.values.cover_image_id).unwrap();
 
-      formik.setFieldValue("cover_image_id", null);
-      setLocalImageUrl(null);
+  //     formik.setFieldValue("cover_image_id", null);
+  //     setLocalImageUrl(null);
 
-      setSnackbarMessage("Image deleted successfully!");
-      setSnackbarSeverity("success");
-      setOpenSnackbar(true);
+  //     setSnackbarMessage("Image deleted successfully!");
+  //     setSnackbarSeverity("success");
+  //     setOpenSnackbar(true);
 
-      // If editing, refetch the blog data
-      if (id) {
-        await refetchBlogData();
-      }
-    } catch (error) {
-      setSnackbarMessage("Failed to delete image");
-      setSnackbarSeverity("error");
-      setOpenSnackbar(true);
-    }
-  };
+  //     // If editing, refetch the blog data
+  //     if (id) {
+  //       await refetchBlogData();
+  //     }
+  //   } catch (error) {
+  //     setSnackbarMessage("Failed to delete image");
+  //     setSnackbarSeverity("error");
+  //     setOpenSnackbar(true);
+  //   }
+  // };
 
   const triggerFileInput = () => {
     fileInputRef.current?.click();
@@ -272,7 +274,7 @@ const BlogAddEditForm: React.FC = () => {
       tag: Yup.string(),
       cover_image_id: Yup.number().nullable(),
     }),
-    onSubmit: async (values, { setErrors }) => {
+    onSubmit: async (values) => {
       try {
         const blogData = {
           title: values.title,
@@ -364,6 +366,8 @@ const BlogAddEditForm: React.FC = () => {
   };
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    console.log(event);
+
     setValue(newValue);
   };
 

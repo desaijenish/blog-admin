@@ -10,7 +10,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { CaretUpDown as CaretUpDownIcon } from "@phosphor-icons/react/dist/ssr/CaretUpDown";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 interface Company {
@@ -32,7 +32,7 @@ const CompanySelectModal: React.FC<CompanySelectModalProps> = ({
   selectedCompany,
   handleCompanyChange,
 }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const router = useNavigate();
 
   const handleChange = (event: SelectChangeEvent<string>) => {

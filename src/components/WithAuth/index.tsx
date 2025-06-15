@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState, useRef } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "universal-cookie";
 import { useLocation, useNavigate, matchPath } from "react-router-dom";

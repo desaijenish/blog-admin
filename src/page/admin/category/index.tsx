@@ -19,7 +19,7 @@ import {
   Avatar,
   Paper,
   Stack,
-  Badge,
+  // Badge,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import {
@@ -66,7 +66,7 @@ const SearchContainer = styled(Box)({
   },
 });
 
-const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
+const StyledTableContainer = styled(TableContainer)(() => ({
   borderRadius: "12px",
   boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
   border: "1px solid #e2e8f0",
@@ -95,16 +95,16 @@ const ActionCell = styled.div({
   gap: "8px",
 });
 
-const StatusBadge = styled(Badge)(({ theme }) => ({
-  "& .MuiBadge-badge": {
-    right: 10,
-    top: 10,
-    padding: "0 4px",
-    minWidth: "20px",
-    height: "20px",
-    borderRadius: "10px",
-  },
-}));
+// const StatusBadge = styled(Badge)(({ theme }) => ({
+//   "& .MuiBadge-badge": {
+//     right: 10,
+//     top: 10,
+//     padding: "0 4px",
+//     minWidth: "20px",
+//     height: "20px",
+//     borderRadius: "10px",
+//   },
+// }));
 
 const Category: React.FC = () => {
   const navigate = useNavigate();
@@ -121,6 +121,8 @@ const Category: React.FC = () => {
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
+    console.log(event);
+
     setPage(newPage);
   };
 

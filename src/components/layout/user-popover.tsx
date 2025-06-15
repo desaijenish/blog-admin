@@ -9,9 +9,9 @@ import Typography from "@mui/material/Typography";
 import { GearSix as GearSixIcon } from "@phosphor-icons/react/dist/ssr/GearSix";
 import { SignOut as SignOutIcon } from "@phosphor-icons/react/dist/ssr/SignOut";
 import { User as UserIcon } from "@phosphor-icons/react/dist/ssr/User";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import Cookies from "universal-cookie";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { parseJwt } from "../../utils/parseJwt";
 import useSignOut from "../../hooks/useSignOut";
 
@@ -26,7 +26,7 @@ export function UserPopover({
   onClose,
   open,
 }: UserPopoverProps): React.JSX.Element {
-  const router = useNavigate();
+  // const router = useNavigate();
   const signOut = useSignOut();
 
   const cookies = new Cookies();
@@ -50,15 +50,15 @@ export function UserPopover({
     }
   }, [cookies]);
 
-  const handleSignOut = React.useCallback(async (): Promise<void> => {
-    try {
-      cookies.remove("token");
-      // await router("/admin/login");
-      // window.location.reload();
-    } catch (err) {
-      console.error("Sign out error", err);
-    }
-  }, [cookies, router]);
+  // const handleSignOut = React.useCallback(async (): Promise<void> => {
+  //   try {
+  //     cookies.remove("token");
+  //     // await router("/admin/login");
+  //     // window.location.reload();
+  //   } catch (err) {
+  //     console.error("Sign out error", err);
+  //   }
+  // }, [cookies, router]);
 
   return (
     <Popover

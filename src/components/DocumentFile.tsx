@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 // import Image from "next/image";
-import React, { FC } from "react";
+import { FC } from "react";
 import File from "../assets/icons/File.svg";
 import download from "../assets/icons/download.svg";
 

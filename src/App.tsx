@@ -1,7 +1,7 @@
 // App.tsx
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, useLocation } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { ThemeProvider } from "./components/core/theme-provider/theme-provider";

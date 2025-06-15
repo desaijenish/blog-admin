@@ -21,7 +21,7 @@ import Cookies from "universal-cookie";
 
 export default function ProtectedRoutes() {
   const [isSuperAdmin, setIsSuperAdmin] = useState<boolean | null>(null);
-  const [permissions, setPermissions] = useState<any>({});
+  // const [permissions, setPermissions] = useState<any>({});
   const navigate = useNavigate();
   const cookies = new Cookies();
   const token = cookies.get("token");
@@ -52,7 +52,7 @@ export default function ProtectedRoutes() {
                 });
               });
             }
-            setPermissions(userPermissions);
+            // setPermissions(userPermissions);
           }
 
           // Redirect logged-in users away from login and register pages

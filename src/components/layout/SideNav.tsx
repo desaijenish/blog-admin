@@ -6,14 +6,14 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Cookies from "universal-cookie";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { navItems, navItems2 } from "./config";
 import { renderNavItems } from "./renderNavItems";
 import { useLocation, useNavigate } from "react-router-dom";
 import { parseJwt } from "../../utils/parseJwt";
 import { setCompanyId } from "../../redux/appSlice";
 import Logo from "../../assets/Logo.png";
-import { RootState } from "../../redux/store";
+// import { RootState } from "../../redux/store";
 interface SideNavProps {
   collapsed: boolean;
   setCollapsed: (collapsed: boolean) => void;
@@ -29,12 +29,12 @@ export function SideNav({ collapsed, setCollapsed }: SideNavProps) {
   const cookies = new Cookies();
   const token = cookies.get("token");
   const dispatch = useDispatch();
-  const [selectedCompany, setSelectedCompany] = React.useState<string | null>(
-    null
-  );
+  // const [selectedCompany, setSelectedCompany] = React.useState<string | null>(
+  //   null
+  // );
   const router = useNavigate();
   const decodedToken = parseJwt(token);
-  const companyId = useSelector((state: RootState) => state.app.companyId);
+  // const companyId = useSelector((state: RootState) => state.app.companyId);
 
   const handleNavItemClick = (key: string) => {
     setExpandedNavKey((prevKey) => (prevKey === key ? null : key));
@@ -46,7 +46,7 @@ export function SideNav({ collapsed, setCollapsed }: SideNavProps) {
 
   React.useEffect(() => {
     if (company) {
-      setSelectedCompany(company[0]?.company_id);
+      // setSelectedCompany(company[0]?.company_id);
       dispatch(setCompanyId(company[0]?.company_id));
     }
   }, [company]);
@@ -76,11 +76,11 @@ export function SideNav({ collapsed, setCollapsed }: SideNavProps) {
   //   }
   // }, [pathname, setCollapsed]);
 
-  const handleCompanyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = event.target.value;
-    setSelectedCompany(selectedValue);
-    dispatch(setCompanyId(selectedValue));
-  };
+  // const handleCompanyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   const selectedValue = event.target.value;
+  //   setSelectedCompany(selectedValue);
+  //   dispatch(setCompanyId(selectedValue));
+  // };
 
   if (
     pathname !== "/login" &&

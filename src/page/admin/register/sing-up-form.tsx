@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -20,15 +20,15 @@ import {
   RadioGroup,
   FormLabel,
   FormControlLabel,
-  Box,
-  CircularProgress,
+  // Box,
+  // CircularProgress,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   useRegisterUserMutation,
-  useVerifyOtpMutation,
+  // useVerifyOtpMutation,
 } from "../../../redux/api/login";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Name is required"),
@@ -40,11 +40,11 @@ const validationSchema = Yup.object({
   gender: Yup.string().required("Gender is required"),
 });
 
-const otpValidationSchema = Yup.object({
-  otp: Yup.string()
-    .length(6, "OTP must be 6 digits")
-    .required("OTP is required"),
-});
+// const otpValidationSchema = Yup.object({
+//   otp: Yup.string()
+//     .length(6, "OTP must be 6 digits")
+//     .required("OTP is required"),
+// });
 
 const defaultValues = {
   name: "",
@@ -63,18 +63,18 @@ const countries = [
 ];
 
 export function SignUpForm(): React.JSX.Element {
-  const navigate = useNavigate();
-  const cookies = new Cookies();
+  // const navigate = useNavigate();
+  // const cookies = new Cookies();
   const [createRegister] = useRegisterUserMutation();
-  const [verifyOtp] = useVerifyOtpMutation();
+  // const [verifyOtp] = useVerifyOtpMutation();
   const [isPending, setIsPending] = useState<boolean>(false);
   const [apiResponse, setApiResponse] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
-  const [registrationToken, setRegistrationToken] = useState<string | null>(
-    null
-  );
-  const [showOtpForm, setShowOtpForm] = useState(false);
-  const [email, setEmail] = useState("");
+  // const [registrationToken, setRegistrationToken] = useState<string | null>(
+  //   null
+  // );
+  // // const [showOtpForm, setShowOtpForm] = useState(false);
+  // const [email, setEmail] = useState("");
 
   const formik = useFormik({
     initialValues: defaultValues,
@@ -92,8 +92,8 @@ export function SignUpForm(): React.JSX.Element {
           return;
         }
 
-        setEmail(values.email);
-        setShowOtpForm(true);
+        // setEmail(values.email);
+        // setShowOtpForm(true);
       } catch (error) {
         setApiResponse("An unexpected error occurred");
       } finally {
@@ -103,55 +103,8 @@ export function SignUpForm(): React.JSX.Element {
     },
   });
 
-  const otpFormik = useFormik({
-    initialValues: { otp: "" },
-    validationSchema: otpValidationSchema,
-    onSubmit: async (values, { setSubmitting }) => {
-      try {
-        const result: any = await verifyOtp({
-          token: registrationToken,
-          otp: values.otp,
-        });
-
-        if ("error" in result) {
-          setApiResponse(result.error.data.detail);
-          return;
-        }
-
-        // Store the final token and redirect
-        cookies.set("token", result.data.token);
-        navigate("/blog");
-      } catch (error) {
-        setApiResponse("OTP verification failed");
-      } finally {
-        setSubmitting(false);
-      }
-    },
-  });
-
   const handleClickShowPassword = () => {
     setShowPassword((prev) => !prev);
-  };
-
-  const handleResendOtp = async () => {
-    try {
-      // You'll need to implement this API endpoint
-      const result: any = await createRegister({
-        email,
-        resend: true,
-      });
-
-      if ("error" in result) {
-        setApiResponse(result.error.data.detail);
-        return;
-      }
-
-      setRegistrationToken(result.data.token);
-      cookies.set("token", result.data.token);
-      setApiResponse("New OTP sent successfully");
-    } catch (error) {
-      setApiResponse("Failed to resend OTP");
-    }
   };
 
   return (

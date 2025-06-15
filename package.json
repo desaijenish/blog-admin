@@ -30,7 +30,6 @@
     "dayjs": "^1.11.13",
     "formik": "^2.4.6",
     "jwt-decode": "^4.0.0",
-    "or": "^0.2.0",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
     "react-clock": "^5.1.0",
@@ -52,7 +51,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
-    "typescript": "^4.9.5",
+    "typescript": "^5.9.0-dev.20250615",
     "typescript-eslint": "^8.26.1",
     "vite": "^6.3.1"
   }
